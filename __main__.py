@@ -21,6 +21,30 @@ class Student:
                 f'{counting(self.grades)}\nКурсы в процессе изучения: {", ".join(self.courses_in_progress)}\n'
                 f'Завершенные курсы: {", ".join(self.finished_courses)}')
 
+    @classmethod
+    def __verify(cls, other):
+        if not isinstance(other, Student):
+            raise TypeError('Операнд справа должен принадлежать к классу Student')
+        return counting(other.grades)
+
+    def __eq__(self, other):
+        return counting(self.grades) == self.__verify(other)
+
+    def __ne__(self, other):
+        return counting(self.grades) != self.__verify(other)
+
+    def __lt__(self, other):
+        return counting(self.grades) < self.__verify(other)
+
+    def __le__(self, other):
+        return counting(self.grades) <= self.__verify(other)
+
+    def __gt__(self, other):
+        return counting(self.grades) > self.__verify(other)
+
+    def __ge__(self, other):
+        return counting(self.grades) >= self.__verify(other)
+
 class Mentor:
     def __init__(self, name, surname):
         self.name = name
@@ -35,6 +59,30 @@ class Lecturer(Mentor):
     def __str__(self):
         return (f"Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за лекции:"
                 f" {counting(self.lecturer_grades)}")
+
+    @classmethod
+    def __verify(cls, other):
+        if not isinstance(other, Lecturer):
+            raise TypeError('Операнд справа должен принадлежать к классу Lecturer')
+        return counting(other.lecturer_grades)
+
+    def __eq__(self, other):
+        return counting(self.lecturer_grades) == self.__verify(other)
+
+    def __ne__(self, other):
+        return counting(self.lecturer_grades) != self.__verify(other)
+
+    def __lt__(self, other):
+        return counting(self.lecturer_grades) < self.__verify(other)
+
+    def __le__(self, other):
+        return counting(self.lecturer_grades) <= self.__verify(other)
+
+    def __gt__(self, other):
+        return counting(self.lecturer_grades) > self.__verify(other)
+
+    def __ge__(self, other):
+        return counting(self.lecturer_grades) >= self.__verify(other)
 
 class Reviewer(Mentor):
     def __init__ (self, name, surname):
@@ -131,3 +179,5 @@ print(f"student1 лучше student2: {counting_student(student1,student2,'>')}"
 print(f"lector1 равен lector2: {counting_lecturer(lector1,lector2,'=')}")
 print(counting_cours_stud([student1, student2], 'python'))
 print(counting_cours_lect([lector1, lector2], 'python'))
+print(student1 == student2)
+print(lector1 == lector2)
