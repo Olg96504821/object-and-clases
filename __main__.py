@@ -180,5 +180,4 @@ print(f"lector1 равен lector2: {counting_lecturer(lector1,lector2,'=')}")
 print(counting_cours_stud([student1, student2], 'python'))
 print(counting_cours_lect([lector1, lector2], 'python'))
 print(student1 == student2)
-
 print(lector1 == lector2)
